@@ -16,6 +16,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Sara Ilyas | Portfolio",
   description: "Software Engineer & UI/UX Designer specializing in clean and creative digital experiences.",
+  icons: {
+    icon: "/image.jpeg",
+  },
 };
 
 export default function RootLayout({
