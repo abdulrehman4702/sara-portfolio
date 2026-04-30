@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Software Engineer & UI/UX Designer specializing in clean and creative digital experiences.",
   icons: {
     icon: "/image.jpeg",
+    shortcut: "/image.jpeg",
+    apple: "/image.jpeg",
   },
 };
 
