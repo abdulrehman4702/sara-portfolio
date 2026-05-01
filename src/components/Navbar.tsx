@@ -30,12 +30,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       {/* Scroll Progress Bar */}
       <div 
         id="progress-bar" 
-        className="fixed top-0 left-0 h-[4px] z-9999 transition-all duration-150 ease-out" 
+        className="fixed top-0 left-0 h-[4px] z-10001 transition-all duration-150 ease-out" 
         style={{ 
           width: `${scrollProgress}%`,
           backgroundColor: '#64ffda',
@@ -46,7 +55,7 @@ export default function Navbar() {
       {/* Navigation Bar */}
       <nav 
         id="navbar"
-        className={`fixed top-0 w-full z-40 backdrop-blur-lg border-b border-white/5 px-6 md:px-12 transition-all duration-500 ${
+        className={`fixed top-0 w-full z-10000 backdrop-blur-lg border-b border-white/5 px-6 md:px-12 transition-all duration-500 ${
           isScrolled 
             ? "shadow-2xl py-4 bg-navy-900/95" 
             : "py-6 bg-navy-900/90"
@@ -69,55 +78,54 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button 
             id="menu-toggle" 
-            onClick={() => {
-              setIsMobileMenuOpen(!isMobileMenuOpen);
-              if (!isMobileMenuOpen) {
-                document.body.style.overflow = "hidden";
-              } else {
-                document.body.style.overflow = "auto";
-              }
-            }}
-            className="md:hidden text-text-white hover:text-accent focus:outline-none transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden text-text-white hover:text-accent focus:outline-none transition-colors p-2"
           >
             {isMobileMenuOpen ? (
-              <X className="w-7 h-7" />
+              <X className="w-8 h-8" />
             ) : (
-              <Menu className="w-7 h-7" />
+              <Menu className="w-8 h-8" />
             )}
           </button>
         </div>
-
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div 
-            id="mobile-menu" 
-            className="md:hidden fixed inset-0 h-screen bg-navy-900 z-50 p-10 flex flex-col gap-10 items-center justify-center text-center animate-in fade-in zoom-in duration-300"
-          >
-            <button 
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                document.body.style.overflow = "auto";
-              }}
-              className="absolute top-6 right-6 text-text-white hover:text-accent transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  document.body.style.overflow = "auto";
-                }}
-                className="mobile-link text-3xl font-bold tracking-[8px] uppercase hover:text-accent transition-all hover:scale-110"
-              >
-                {link.name.toUpperCase()}
-              </a>
-            ))}
-          </div>
-        )}
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        id="mobile-menu" 
+        className={`md:hidden fixed inset-0 h-screen z-9999 p-10 flex flex-col gap-10 items-center justify-center text-center transition-all duration-500 ease-in-out overflow-hidden ${
+          isMobileMenuOpen 
+            ? "opacity-100 translate-y-0 pointer-events-auto" 
+            : "opacity-0 -translate-y-full pointer-events-none"
+        }`}
+        style={{ 
+          backgroundColor: 'rgba(10, 25, 47, 0.7)',
+          backdropFilter: 'blur(30px)',
+          WebkitBackdropFilter: 'blur(30px)'
+        }}
+      >
+        {/* Background Decorative Elements for Mobile Menu */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div className="flex flex-col gap-8 relative z-10">
+          {navLinks.map((link, i) => (
+            <a 
+              key={link.name} 
+              href={link.href} 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mobile-link text-3xl font-bold tracking-[8px] uppercase hover:text-accent transition-all hover:scale-110"
+              style={{ 
+                transitionDelay: `${i * 100}ms`,
+                transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+                opacity: isMobileMenuOpen ? 1 : 0
+              }}
+            >
+              {link.name.toUpperCase()}
+            </a>
+          ))}
+        </div>
+      </div>
     </>
   );
 }

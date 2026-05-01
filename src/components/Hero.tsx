@@ -56,7 +56,7 @@ export default function Hero() {
             <span 
               id="typewriter" 
               className="text-xl md:text-3xl font-bold font-sans uppercase tracking-tight transition-colors duration-500" 
-              style={{ color: (roleIndex === 0 || roleIndex === 1) ? '#64ffda' : '#ffffff' }}
+              style={{ color: '#64ffda' }}
             >
               {displayText}
             </span>
