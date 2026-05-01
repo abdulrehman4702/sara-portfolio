@@ -57,6 +57,7 @@ export default function Projects() {
                 src={project.image} 
                 alt={project.title} 
                 fill 
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-40"
               />
               <div className="absolute inset-0 bg-linear-to-t from-navy-900 via-navy-900/40 to-transparent p-10 flex flex-col justify-end">

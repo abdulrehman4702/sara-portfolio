@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, User } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin, DribbbleIcon as Dribbble, InstagramIcon as Instagram } from "./SocialIcons";
 import Image from "next/image";
 
@@ -102,6 +101,8 @@ export default function Hero() {
               src="/image.jpeg" 
               alt="Sara Ilyas" 
               fill 
+              priority
+              sizes="(max-width: 768px) 100vw, 400px"
               className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
             />
             <div className="absolute inset-0 bg-accent/5 mix-blend-multiply group-hover:bg-transparent transition-all"></div>

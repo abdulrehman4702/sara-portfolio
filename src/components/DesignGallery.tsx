@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const designs = [
   {
     title: "Minimalism 01",
@@ -37,10 +39,12 @@ export default function DesignGallery() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 reveal-hidden" style={{ transitionDelay: "200ms" }}>
           {designs.map((design, i) => (
             <div key={i} className={`group relative aspect-3/4 rounded-2xl overflow-hidden border border-white/10 bg-navy-800 shadow-xl cursor-crosshair ${design.offset ? "md:mt-12" : ""}`}>
-              <img 
+              <Image 
                 src={design.image} 
                 alt={design.title} 
-                className="w-full h-full object-cover transition-all duration-700 opacity-100 group-hover:rotate-1"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-60 group-hover:opacity-100 group-hover:rotate-1"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-navy-900/60 opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="p-4 border border-accent bg-navy-900/90 text-accent font-mono text-[10px] uppercase tracking-[4px]">{design.title}</span>
