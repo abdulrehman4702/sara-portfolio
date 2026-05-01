@@ -27,26 +27,26 @@ export default function About() {
 
             {/* Skills Highlight Box */}
             <div className="glass-card p-10 border-accent/10 bg-navy-900/60">
-              <h4 className="text-xl font-bold mb-6 text-accent uppercase tracking-widest">Ongoing Focus</h4>
+              <h4 className="text-xl font-bold mb-6 uppercase tracking-widest" style={{ color: '#64ffda' }}>Ongoing Focus</h4>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
-                  <div className="mt-2 w-2 h-2 rounded-full bg-accent shrink-0"></div>
+                  <div className="mt-2 w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: '#64ffda', boxShadow: '0 0 10px rgba(100, 255, 218, 0.4)' }}></div>
                   <div>
-                    <p className="text-text-white font-semibold">Architectural Design</p>
+                    <p className="text-accent font-semibold">Architectural Design</p>
                     <p className="text-sm text-text-dim">Ensuring scalability and performance in distributed systems.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <div className="mt-2 w-2 h-2 rounded-full bg-accent shrink-0"></div>
+                  <div className="mt-2 w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: '#64ffda', boxShadow: '0 0 10px rgba(100, 255, 218, 0.4)' }}></div>
                   <div>
-                    <p className="text-text-white font-semibold">User Centricity</p>
+                    <p className="text-accent font-semibold">User Centricity</p>
                     <p className="text-sm text-text-dim">Prioritizing the end-user experience in every line of code.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <div className="mt-2 w-2 h-2 rounded-full bg-accent shrink-0"></div>
+                  <div className="mt-2 w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: '#64ffda', boxShadow: '0 0 10px rgba(100, 255, 218, 0.4)' }}></div>
                   <div>
-                    <p className="text-text-white font-semibold">AI Integration</p>
+                    <p className="text-accent font-semibold">AI Integration</p>
                     <p className="text-sm text-text-dim">Leveraging machine learning to create smarter, adaptive interfaces.</p>
                   </div>
                 </li>

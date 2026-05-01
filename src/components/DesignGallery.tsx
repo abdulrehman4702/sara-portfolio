@@ -5,22 +5,22 @@ import Image from "next/image";
 const designs = [
   {
     title: "Minimalism 01",
-    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600",
+    image: "/graphic 1.jpeg",
     offset: false,
   },
   {
     title: "Branding Identity",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=600",
+    image: "/graphic 2.jpeg",
     offset: true,
   },
   {
     title: "Abstract 04",
-    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600",
+    image: "/graphic 3.jpeg",
     offset: false,
   },
   {
     title: "Logo Evolution",
-    image: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&q=80&w=600",
+    image: "/graphic 4.jpeg",
     offset: true,
   },
 ];
@@ -36,9 +36,9 @@ export default function DesignGallery() {
         </div>
 
         {/* Bento Grid Gallery */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 reveal-hidden" style={{ transitionDelay: "200ms" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 reveal-hidden" style={{ transitionDelay: "200ms" }}>
           {designs.map((design, i) => (
-            <div key={i} className={`group relative aspect-3/4 rounded-2xl overflow-hidden border border-white/10 bg-navy-800 shadow-xl cursor-crosshair ${design.offset ? "md:mt-12" : ""}`}>
+            <div key={i} className={`group relative aspect-3/4 rounded-2xl overflow-hidden border border-white/10 bg-navy-800 shadow-xl cursor-crosshair ${design.offset ? "sm:mt-12" : ""}`}>
               <Image 
                 src={design.image} 
                 alt={design.title} 

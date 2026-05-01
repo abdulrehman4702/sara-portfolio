@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="py-20 px-8 border-t border-white/5 bg-navy-900">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
         <div className="text-4xl font-sans font-black text-text-white tracking-tighter">
-          SI<span className="text-accent">.</span>
+          SI<span style={{ color: '#64ffda' }}>.</span>
         </div>
         
         <div className="flex flex-wrap justify-center gap-12 text-[10px] font-black tracking-[4px] text-text-dim/60">
@@ -33,7 +33,7 @@ export default function Footer() {
           ©️ 2026 SARA ILYAS. CRAFTED WITH REFINEMENT.
         </p>
         <p className="text-[10px] text-text-dim/40 tracking-[2px] uppercase font-mono">
-          Location: Karachi, Sindh, Pakistan
+          Location: Islamabad, Pakistan
         </p>
       </div>
     </footer>

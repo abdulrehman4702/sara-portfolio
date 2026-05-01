@@ -22,7 +22,7 @@ export default function Navbar() {
       
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
       setScrollProgress(scrolled);
     };
 
@@ -35,22 +35,26 @@ export default function Navbar() {
       {/* Scroll Progress Bar */}
       <div 
         id="progress-bar" 
-        className="fixed top-0 left-0 h-1.5 bg-accent z-50 origin-[0%] transition-all duration-100" 
-        style={{ width: `${scrollProgress}%` }}
+        className="fixed top-0 left-0 h-[4px] z-9999 transition-all duration-150 ease-out" 
+        style={{ 
+          width: `${scrollProgress}%`,
+          backgroundColor: '#64ffda',
+          boxShadow: '0 0 10px rgba(100, 255, 218, 0.5)'
+        }}
       />
 
       {/* Navigation Bar */}
       <nav 
         id="navbar"
-        className={`fixed top-0 w-full z-40 backdrop-blur-lg border-b border-white/5 px-8 transition-all duration-500 ${
+        className={`fixed top-0 w-full z-40 backdrop-blur-lg border-b border-white/5 px-6 md:px-12 transition-all duration-500 ${
           isScrolled 
             ? "shadow-2xl py-4 bg-navy-900/95" 
-            : "py-5 bg-navy-900/90"
+            : "py-6 bg-navy-900/90"
         }`}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-2xl font-sans font-black tracking-tighter hover:scale-105 transition-transform cursor-pointer">
-            SI<span className="text-accent">.</span>
+            SI<span style={{ color: '#64ffda' }}>.</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -87,8 +91,17 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div 
             id="mobile-menu" 
-            className="md:hidden fixed inset-0 top-[84px] bg-navy-900/98 z-50 p-10 flex flex-col gap-10 items-center justify-center text-center animate-in fade-in duration-300"
+            className="md:hidden fixed inset-0 h-screen bg-navy-900 z-50 p-10 flex flex-col gap-10 items-center justify-center text-center animate-in fade-in zoom-in duration-300"
           >
+            <button 
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.body.style.overflow = "auto";
+              }}
+              className="absolute top-6 right-6 text-text-white hover:text-accent transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
@@ -97,7 +110,7 @@ export default function Navbar() {
                   setIsMobileMenuOpen(false);
                   document.body.style.overflow = "auto";
                 }}
-                className="mobile-link text-2xl font-bold tracking-[4px] uppercase hover:text-accent transition-colors"
+                className="mobile-link text-3xl font-bold tracking-[8px] uppercase hover:text-accent transition-all hover:scale-110"
               >
                 {link.name.toUpperCase()}
               </a>

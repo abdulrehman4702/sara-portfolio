@@ -34,6 +34,8 @@ const projects = [
 ];
 
 export default function Projects() {
+  const accentColor = "#64ffda";
+
   return (
     <section id="projects" className="py-32 px-8 bg-navy-800/20">
       <div className="max-w-7xl mx-auto">
@@ -43,7 +45,7 @@ export default function Projects() {
             <div className="accent-line"></div>
             <p className="text-text-dim text-xl font-light italic">A showcase of refined digital solutions engineered with precision.</p>
           </div>
-          <a href="#" className="group flex items-center gap-3 text-accent font-bold text-sm tracking-widest uppercase hover:text-white transition-all">
+          <a href="#" className="group flex items-center gap-3 font-bold text-sm tracking-widest uppercase hover:text-white transition-all" style={{ color: accentColor }}>
             View Comprehensive Archive 
             <ExternalLink className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
           </a>
@@ -61,16 +63,32 @@ export default function Projects() {
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-40"
               />
               <div className="absolute inset-0 bg-linear-to-t from-navy-900 via-navy-900/40 to-transparent p-10 flex flex-col justify-end">
-                <span className="text-accent font-mono text-sm mb-3 tracking-tighter uppercase">{project.type}</span>
-                <h3 className="text-3xl font-bold mb-6 text-text-white group-hover:text-accent transition-colors">{project.title}</h3>
+                <span className="font-mono text-sm mb-3 tracking-tighter uppercase" style={{ color: accentColor }}>{project.type}</span>
+                <h3 className="text-3xl font-bold mb-6 text-text-white transition-colors">{project.title}</h3>
                 <p className="text-sm text-text-dim mb-8 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">{project.description}</p>
                 <div className="flex gap-3 mb-8">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-mono tracking-widest bg-accent/10 border border-accent/20 text-accent px-3 py-1.5 rounded-full">{tag}</span>
+                    <span 
+                      key={tag} 
+                      className="text-[10px] font-mono tracking-widest px-3 py-1.5 rounded-full"
+                      style={{ 
+                        color: accentColor, 
+                        border: `1px solid rgba(100, 255, 218, 0.2)`, 
+                        backgroundColor: `rgba(100, 255, 218, 0.1)` 
+                      }}
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <a href={project.live} className="px-6 py-2.5 bg-accent text-navy-900 text-xs font-black uppercase tracking-widest rounded-md hover:bg-white transition-all transform group-hover:translate-y-0 translate-y-4">Live URL</a>
+                  <a 
+                    href={project.live} 
+                    className="px-6 py-2.5 text-navy-900 text-xs font-black uppercase tracking-widest rounded-md hover:bg-white transition-all transform group-hover:translate-y-0 translate-y-4"
+                    style={{ backgroundColor: accentColor }}
+                  >
+                    Live URL
+                  </a>
                   <a href={project.source} className="px-6 py-2.5 border border-white/20 text-text-white text-xs font-black uppercase tracking-widest rounded-md hover:bg-white/10 transition-all transform group-hover:translate-y-0 translate-y-4">Source</a>
                 </div>
               </div>

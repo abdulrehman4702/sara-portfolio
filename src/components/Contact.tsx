@@ -4,6 +4,8 @@ import { Mail } from "lucide-react";
 import { InstagramIcon as Instagram } from "./SocialIcons";
 
 export default function Contact() {
+  const accentColor = "#64ffda";
+
   return (
     <section id="contact" className="py-32 px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto reveal-hidden">
@@ -20,7 +22,7 @@ export default function Contact() {
           <div className="md:col-span-2 space-y-6 text-left">
             <div className="glass-card p-6 border-white/5 bg-navy-900/60 group hover:border-accent/30 transition-all">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-accent/10 rounded-lg text-accent group-hover:bg-accent group-hover:text-navy-900 transition-all">
+                <div className="p-3 bg-accent/10 rounded-lg group-hover:bg-accent group-hover:text-navy-900 transition-all" style={{ color: accentColor }}>
                   <Mail className="w-5 h-5" />
                 </div>
                 <h4 className="text-white font-bold uppercase tracking-widest text-xs">Direct Email</h4>
@@ -30,7 +32,7 @@ export default function Contact() {
 
             <div className="glass-card p-6 border-white/5 bg-navy-900/60 group hover:border-accent/30 transition-all">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-accent/10 rounded-lg text-accent group-hover:bg-accent group-hover:text-navy-900 transition-all">
+                <div className="p-3 bg-accent/10 rounded-lg group-hover:bg-accent group-hover:text-navy-900 transition-all" style={{ color: accentColor }}>
                   <Instagram className="w-5 h-5" />
                 </div>
                 <h4 className="text-white font-bold uppercase tracking-widest text-xs">Instagram</h4>
@@ -39,8 +41,8 @@ export default function Contact() {
             </div>
 
             <div className="flex items-center gap-3 px-4 py-2 border border-accent/20 rounded-full w-fit bg-accent/5">
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
-              <span className="text-[10px] font-mono text-accent uppercase tracking-widest">Signal Strength: Optimal</span>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: accentColor }}></div>
+              <span className="text-[10px] font-mono uppercase tracking-widest" style={{ color: accentColor }}>Signal Strength: Optimal</span>
             </div>
           </div>
 
@@ -49,19 +51,19 @@ export default function Contact() {
             <form className="glass-card p-10 space-y-8 border-white/5 bg-navy-900/40 text-left" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[3px] text-text-dim">Full Identity</label>
+                  <label className="text-[10px] font-black uppercase tracking-[3px]" style={{ color: accentColor }}>Full Identity</label>
                   <input type="text" required placeholder="User Name" className="w-full bg-navy-900/80 border border-white/10 rounded-lg p-4 text-text-white outline-none focus:border-accent transition-all placeholder:text-text-dim/20 font-mono" />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[3px] text-text-dim">Gateway (Email)</label>
+                  <label className="text-[10px] font-black uppercase tracking-[3px]" style={{ color: accentColor }}>Gateway (Email)</label>
                   <input type="email" required placeholder="email@address.sys" className="w-full bg-navy-900/80 border border-white/10 rounded-lg p-4 text-text-white outline-none focus:border-accent transition-all placeholder:text-text-dim/20 font-mono" />
                 </div>
               </div>
               <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-[3px] text-text-dim">Transmission Payload</label>
+                <label className="text-[10px] font-black uppercase tracking-[3px]" style={{ color: accentColor }}>Transmission Payload</label>
                 <textarea rows={5} required placeholder="Input message data..." className="w-full bg-navy-900/80 border border-white/10 rounded-lg p-4 text-text-white outline-none focus:border-accent transition-all placeholder:text-text-dim/20 resize-none font-mono"></textarea>
               </div>
-              <button className="w-full group bg-accent text-navy-900 p-5 rounded-lg font-black text-sm uppercase tracking-[4px] hover:bg-white transition-all relative overflow-hidden shadow-2xl active:scale-95">
+              <button className="w-full group text-navy-900 p-5 rounded-lg font-black text-sm uppercase tracking-[4px] hover:bg-white transition-all relative overflow-hidden shadow-2xl active:scale-95" style={{ backgroundColor: accentColor }}>
                 <span className="relative z-10">Transmit Signal</span>
                 <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
               </button>

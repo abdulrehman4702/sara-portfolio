@@ -46,38 +46,42 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10 w-full">
         {/* Left Content */}
         <div className="flex flex-col gap-6 text-left reveal-hidden">
-          <p className="label-mono text-accent">Hi, I am</p>
-          <h1 className="text-4xl md:text-6xl font-sans font-black tracking-tight leading-[1.05] text-text-white">
-            Sara Ilyas<span className="text-accent">.</span>
+          <p className="label-mono" style={{ color: '#64ffda' }}>Exploring the Frontiers of Code & Design</p>
+          <h1 className="text-5xl md:text-7xl font-sans font-black tracking-tight leading-[1.05] text-text-white">
+            Sara Ilyas<span style={{ color: '#64ffda' }}>.</span>
           </h1>
           
           {/* Animated Typewriter Roles */}
           <div className="h-16 flex items-center">
-            <span id="typewriter" className="text-xl md:text-3xl text-accent font-bold font-sans uppercase tracking-tight">
+            <span 
+              id="typewriter" 
+              className="text-xl md:text-3xl font-bold font-sans uppercase tracking-tight transition-colors duration-500" 
+              style={{ color: (roleIndex === 0 || roleIndex === 1) ? '#64ffda' : '#ffffff' }}
+            >
               {displayText}
             </span>
-            <span className="animate-pulse ml-2 inline-block h-6 w-1.5 bg-accent"></span>
+            <span className="animate-pulse ml-2 inline-block h-6 w-1.5" style={{ backgroundColor: '#64ffda' }}></span>
           </div>
           
           {/* Hero Description */}
           <div className="flex flex-col gap-6">
-            <p className="text-text-white text-2xl md:text-3xl font-bold tracking-tight">
-              Building Clean & Creative Digital Experiences
+            <p className="text-text-white text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
+              Architecting Digital Excellence <br className="hidden md:block" /> with Precision.
             </p>
-            <p className="text-text-dim max-w-xl text-lg leading-relaxed font-light">
-              I’m a Software Engineer with a strong passion for technology and design. 
-              I specialize in working on projects that blend logic with visual storytelling—whether 
-              it’s writing clean code or crafting engaging interfaces.
+            <p className="text-text-dim max-w-xl text-lg md:text-xl leading-relaxed font-light">
+              I am a Software Engineer dedicated to building sophisticated digital solutions. 
+              From robust backend architectures to pixel-perfect interfaces, I bridge the gap 
+              between technical complexity and intuitive user experience.
             </p>
           </div>
 
           {/* Call to Actions & Socials */}
-          <div className="flex flex-wrap gap-6 items-center mt-4">
+          <div className="flex flex-wrap gap-6 items-center mt-8">
             <a href="#projects" className="btn-outline group">
-              Explore Work
+              View My Work
               <ArrowRight className="inline-block ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
-            <div className="flex gap-5 items-center">
+            <div className="flex gap-5 items-center ml-2">
               <a href="https://github.com/Sarailyass?tab=repositories" target="_blank" title="GitHub" className="p-3 text-text-dim hover:text-accent transition-all hover:scale-110">
                 <Github className="w-6 h-6" />
               </a>
