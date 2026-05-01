@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
-import { ExternalLink, Terminal, ArrowUpRight, Sparkles } from "lucide-react";
 
 const projects = [
   {
@@ -13,7 +12,6 @@ const projects = [
     tags: ["React", "Node.js", "Firebase"],
     live: "#",
     source: "#",
-    color: "from-blue-500 to-cyan-400",
   },
   {
     title: "LuxeDrive",
@@ -23,7 +21,6 @@ const projects = [
     tags: ["Vite", "GSAP", "Tailwind"],
     live: "#",
     source: "#",
-    color: "from-purple-500 to-pink-400",
   },
   {
     title: "XSS Attacks Hub",
@@ -33,114 +30,50 @@ const projects = [
     tags: ["Markdown", "PrismJS", "Next.js"],
     live: "#",
     source: "#",
-    color: "from-emerald-500 to-teal-400",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-32 px-6 relative bg-bg-deep overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20 flex flex-col md:flex-row justify-between items-end gap-10"
-        >
+    <section id="projects" className="py-32 px-8 bg-navy-800/20">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-20 flex flex-col md:flex-row justify-between items-end gap-10 reveal-hidden">
           <div className="text-left">
-            <h2 className="section-title">Selected <span className="text-gradient">Projects</span></h2>
-            <div className="accent-line" />
-            <p className="text-text-muted text-xl font-medium max-w-xl">
-              A collection of digital experiences crafted with a focus on <span className="text-white">performance</span>, <span className="text-white">aesthetics</span>, and <span className="text-white">user impact</span>.
-            </p>
+            <h2 className="section-title">Recent Work</h2>
+            <div className="accent-line"></div>
+            <p className="text-text-dim text-xl font-light italic">A showcase of refined digital solutions engineered with precision.</p>
           </div>
-          <motion.a
-            href="#"
-            whileHover={{ scale: 1.05 }}
-            className="group flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white font-bold text-sm tracking-widest uppercase hover:bg-white/10 transition-all"
-          >
-            Archive
-            <ExternalLink className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 text-accent-primary" />
-          </motion.a>
-        </motion.div>
+          <a href="#" className="group flex items-center gap-3 text-accent font-bold text-sm tracking-widest uppercase hover:text-white transition-all">
+            View Comprehensive Archive 
+            <ExternalLink className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+          </a>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 reveal-hidden" style={{ transitionDelay: "200ms" }}>
           {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative flex flex-col glass-card p-0 border-white/5 hover:border-accent-primary/20 bg-white/2"
-            >
-              {/* Image Container */}
-              <div className="relative h-64 w-full overflow-hidden rounded-t-2xl">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-bg-deep/40 group-hover:bg-bg-deep/20 transition-colors duration-500" />
-
-                {/* Type Badge */}
-                <div className="absolute top-4 left-4 px-4 py-1.5 rounded-full bg-bg-deep/80 backdrop-blur-md border border-white/10 flex items-center gap-2">
-                  <Sparkles className="w-3 h-3 text-accent-cyan" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white/90">{project.type}</span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-8 flex flex-col grow">
-                <h3 className="text-2xl font-heading font-black mb-4 text-white group-hover:text-accent-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-text-muted text-sm leading-relaxed mb-8 line-clamp-3 font-medium">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] font-bold tracking-widest bg-white/5 border border-white/10 text-white/60 px-3 py-1.5 rounded-lg uppercase"
-                    >
-                      {tag}
-                    </span>
+            <div key={i} className="group relative rounded-3xl overflow-hidden glass-card p-0 h-[450px] border-white/5 shadow-2xl">
+              <Image 
+                src={project.image} 
+                alt={project.title} 
+                fill 
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-40"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-navy-900 via-navy-900/40 to-transparent p-10 flex flex-col justify-end">
+                <span className="text-accent font-mono text-sm mb-3 tracking-tighter uppercase">{project.type}</span>
+                <h3 className="text-3xl font-bold mb-6 text-text-white group-hover:text-accent transition-colors">{project.title}</h3>
+                <p className="text-sm text-text-dim mb-8 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">{project.description}</p>
+                <div className="flex gap-3 mb-8">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-[10px] font-mono tracking-widest bg-accent/10 border border-accent/20 text-accent px-3 py-1.5 rounded-full">{tag}</span>
                   ))}
                 </div>
-
-                <div className="flex items-center justify-between pt-6 border-t border-white/5">
-                  <div className="flex gap-4">
-                    <motion.a
-                      href={project.source}
-                      whileHover={{ y: -2 }}
-                      className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 transition-all"
-                      title="View Source"
-                    >
-                      <Terminal className="w-5 h-5" />
-                    </motion.a>
-                    <motion.a
-                      href={project.live}
-                      whileHover={{ y: -2 }}
-                      className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 transition-all"
-                      title="Live Demo"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </motion.a>
-                  </div>
-
-                  <motion.a
-                    href={project.live}
-                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-accent-primary hover:text-white transition-colors"
-                  >
-                    View Project
-                    <ArrowUpRight className="w-4 h-4" />
-                  </motion.a>
+                <div className="flex gap-4">
+                  <a href={project.live} className="px-6 py-2.5 bg-accent text-navy-900 text-xs font-black uppercase tracking-widest rounded-md hover:bg-white transition-all transform group-hover:translate-y-0 translate-y-4">Live URL</a>
+                  <a href={project.source} className="px-6 py-2.5 border border-white/20 text-text-white text-xs font-black uppercase tracking-widest rounded-md hover:bg-white/10 transition-all transform group-hover:translate-y-0 translate-y-4">Source</a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -1,74 +1,51 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-
 const designs = [
   {
     title: "Minimalism 01",
-    image: "/minimalism.png",
+    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600",
     offset: false,
   },
   {
     title: "Branding Identity",
-    image: "/branding.png",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=600",
     offset: true,
   },
   {
     title: "Abstract 04",
-    image: "/abstract.png",
+    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600",
     offset: false,
   },
   {
     title: "Logo Evolution",
-    image: "/logo-evolution.png",
+    image: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&q=80&w=600",
     offset: true,
   },
 ];
 
 export default function DesignGallery() {
   return (
-    <section id="design" className="py-32 px-6 relative bg-bg-deep overflow-hidden">
+    <section id="design" className="py-32 px-8 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20 text-left"
-        >
-          <h2 className="section-title">Visual <span className="text-gradient">Narratives</span></h2>
-          <div className="accent-line" />
-          <p className="text-text-muted text-xl font-medium max-w-xl">
-            Where artistic expression meets structured visual communication and branding.
-          </p>
-        </motion.div>
+        <div className="mb-20 text-left reveal-hidden">
+          <h2 className="section-title">Graphic Design Workflow</h2>
+          <div className="accent-line"></div>
+          <p className="text-text-dim text-xl font-light italic">Artistic expression meets structured visual communication.</p>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* Bento Grid Gallery */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 reveal-hidden" style={{ transitionDelay: "200ms" }}>
           {designs.map((design, i) => (
-            <motion.div
-              key={design.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`group relative aspect-3/4 rounded-[32px] overflow-hidden border border-white/5 bg-white/2 shadow-2xl cursor-pointer ${
-                design.offset ? "md:mt-16" : ""
-              }`}
-            >
-              <Image
-                src={design.image}
-                alt={design.title}
-                fill
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-40 group-hover:opacity-100 group-hover:scale-110"
+            <div key={i} className={`group relative aspect-3/4 rounded-2xl overflow-hidden border border-white/10 bg-navy-800 shadow-xl cursor-crosshair ${design.offset ? "md:mt-12" : ""}`}>
+              <img 
+                src={design.image} 
+                alt={design.title} 
+                className="w-full h-full object-cover transition-all duration-700 opacity-100 group-hover:rotate-1"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-bg-deep via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity duration-700" />
-              
-              <div className="absolute inset-0 flex items-center justify-center bg-accent-primary/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <span className="px-6 py-3 rounded-full bg-white text-bg-deep font-heading font-black text-xs uppercase tracking-[2px] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  {design.title}
-                </span>
+              <div className="absolute inset-0 flex items-center justify-center bg-navy-900/60 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="p-4 border border-accent bg-navy-900/90 text-accent font-mono text-[10px] uppercase tracking-[4px]">{design.title}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

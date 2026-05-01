@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import Magnetic from "./Magnetic";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -20,7 +18,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
       
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -36,96 +34,76 @@ export default function Navbar() {
     <>
       {/* Scroll Progress Bar */}
       <div 
-        className="fixed top-0 left-0 h-1 bg-linear-to-r from-accent-primary to-accent-secondary z-50 origin-left transition-all duration-100"
+        id="progress-bar" 
+        className="fixed top-0 left-0 h-1.5 bg-accent z-50 origin-[0%] transition-all duration-100" 
         style={{ width: `${scrollProgress}%` }}
       />
 
+      {/* Navigation Bar */}
       <nav 
-        className={`fixed top-0 w-full z-40 transition-all duration-500 px-6 py-5 ${
+        id="navbar"
+        className={`fixed top-0 w-full z-40 backdrop-blur-lg border-b border-white/5 px-8 transition-all duration-500 ${
           isScrolled 
-            ? "bg-bg-deep/80 backdrop-blur-xl border-b border-white/10 py-4" 
-            : "bg-transparent"
+            ? "shadow-2xl py-4 bg-navy-900/95" 
+            : "py-5 bg-navy-900/90"
         }`}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Magnetic>
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-heading font-black tracking-tighter cursor-pointer flex items-center gap-1 group"
-            >
-              <span className="text-white">SI</span>
-              <span className="w-2 h-2 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(139,92,246,0.8)] group-hover:scale-150 transition-transform" />
-            </motion.div>
-          </Magnetic>
+          <div className="text-2xl font-sans font-black tracking-tighter hover:scale-105 transition-transform cursor-pointer">
+            SI<span className="text-accent">.</span>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-4 items-center">
-            {navLinks.map((link, i) => (
-              <Magnetic key={link.name}>
-                <motion.a
-                  href={link.href}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="nav-link px-4 py-2"
-                >
-                  <span className="relative z-10">{link.name}</span>
-                </motion.a>
-              </Magnetic>
+          <div className="hidden md:flex gap-10">
+            {navLinks.map((link) => (
+              <a key={link.name} href={link.href} className="nav-link">
+                {link.name}
+              </a>
             ))}
-            <div className="ml-4">
-              <Magnetic>
-                <motion.a
-                  href="#contact"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="px-6 py-2.5 rounded-2xl bg-white/5 text-white font-bold text-sm border border-white/10 hover:bg-white hover:text-bg-deep transition-all duration-300 backdrop-blur-md"
-                >
-                  Get in Touch
-                </motion.a>
-              </Magnetic>
-            </div>
           </div>
 
           {/* Mobile Menu Toggle Button */}
           <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white hover:text-accent-primary focus:outline-none transition-colors p-2"
+            id="menu-toggle" 
+            onClick={() => {
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+              if (!isMobileMenuOpen) {
+                document.body.style.overflow = "hidden";
+              } else {
+                document.body.style.overflow = "auto";
+              }
+            }}
+            className="md:hidden text-text-white hover:text-accent focus:outline-none transition-colors"
           >
-            {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+            {isMobileMenuOpen ? (
+              <X className="w-7 h-7" />
+            ) : (
+              <Menu className="w-7 h-7" />
+            )}
           </button>
         </div>
 
         {/* Mobile Menu Overlay */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="md:hidden fixed inset-0 top-[72px] bg-bg-deep/95 backdrop-blur-2xl z-50 p-10 flex flex-col gap-8 items-center justify-center text-center"
-            >
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-3xl font-heading font-bold tracking-tight text-white hover:text-accent-primary transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-4 px-8 py-4 rounded-3xl bg-linear-to-r from-accent-primary to-accent-secondary text-white font-black uppercase tracking-[4px] text-xs"
+        {isMobileMenuOpen && (
+          <div 
+            id="mobile-menu" 
+            className="md:hidden fixed inset-0 top-[84px] bg-navy-900/98 z-50 p-10 flex flex-col gap-10 items-center justify-center text-center animate-in fade-in duration-300"
+          >
+            {navLinks.map((link) => (
+              <a 
+                key={link.name} 
+                href={link.href} 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  document.body.style.overflow = "auto";
+                }}
+                className="mobile-link text-2xl font-bold tracking-[4px] uppercase hover:text-accent transition-colors"
               >
-                Connect Now
+                {link.name.toUpperCase()}
               </a>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            ))}
+          </div>
+        )}
       </nav>
     </>
   );

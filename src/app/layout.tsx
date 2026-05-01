@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
   title: "Sara Ilyas | Portfolio",
-  description: "Software Engineer & UI/UX Designer specializing in clean and creative digital experiences.",
+  description: "Software Engineer & UI/UX Designer building clean and creative digital experiences.",
   icons: {
     icon: "/image.jpeg",
     shortcut: "/image.jpeg",
@@ -30,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} ${plusJakartaSans.variable} font-sans`}>
+      <body className={`${inter.variable} ${firaCode.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

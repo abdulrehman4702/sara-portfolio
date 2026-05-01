@@ -6,10 +6,12 @@ import Projects from "@/components/Projects";
 import DesignGallery from "@/components/DesignGallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import RevealObserver from "@/components/RevealObserver";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <RevealObserver />
       <Navbar />
       <Hero />
       <About />
